@@ -116,8 +116,7 @@
             font-family: 'Fredoka One', cursive;
             text-align: center;
             font-size: 5rem;
-            /* 移除粗體 */
-            color: #334155; /* slate-700 */
+            color: #334155;
             min-height: 100px;
             padding: 1rem;
             background: white;
@@ -126,7 +125,7 @@
             align-items: center;
             justify-content: center;
             width: 90%;
-            letter-spacing: 0.1em; /* tracking-widest */
+            letter-spacing: 0.1em;
         }
         #gs-char-display span { display: inline-block; transition: color 0.2s; }
         .gs-correct { color: #10B981; }
@@ -135,33 +134,36 @@
         .gs-shake-correct-animation { animation: gs-shake-correct 0.6s ease-in-out; }
         .gs-shake-incorrect-animation { animation: gs-shake-incorrect 0.4s ease-in-out; }
         
-        /* 新增：開始畫面的閃爍動畫 */
-        @keyframes pulse-ready {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(0.98); }
-        }
-        .pulse-animation {
-            font-family: 'Noto Sans TC', sans-serif;
-            font-weight: 700;
-            font-size: 3rem;
-            color: #0c4a6e;
-            animation: pulse-ready 1.5s ease-in-out infinite;
-        }
+        @keyframes pulse-ready { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(0.98); } }
+        .pulse-animation { font-family: 'Noto Sans TC', sans-serif; font-weight: 700; font-size: 3rem; color: #0c4a6e; animation: pulse-ready 1.5s ease-in-out infinite; }
 
         /* --- 打字衝刺遊戲樣式 --- */
-        #game-dash {
-            height: 100%;
-            background-color: #0f172a; /* slate-900 */
-            display: flex;
-            flex-direction: column;
-        }
-        #gd-ui-bar { padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 700; color: #f1f5f9; background-color: rgba(15, 23, 42, 0.5); border-bottom: 2px solid #334155; z-index: 10; }
+        #game-dash { height: 100%; background-color: #0f172a; display: flex; flex-direction: column; }
+        #gd-ui-bar { padding: 0.5rem 1rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; font-size: 1rem; font-weight: 700; color: #f1f5f9; background-color: rgba(15, 23, 42, 0.5); border-bottom: 2px solid #334155; z-index: 10; text-align: center; }
         #gd-game-area { flex-grow: 1; position: relative; }
         #gd-game-area .letter { position: absolute; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.8rem; color: #f1f5f9; background-color: #f43f5e; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.4); transition: transform 0.1s ease-out; }
         #gd-game-area .popped { transform: scale(1.5); opacity: 0; transition: all 0.2s ease-out; }
         .gd-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.8); backdrop-filter: blur(5px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 20; padding: 2rem; color: #f1f5f9; }
         .gd-overlay h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; margin-bottom: 1rem; color: #f43f5e; }
         .gd-overlay .button { padding: 0.8rem 1.8rem; font-size: 1rem; font-weight: 700; color: #f1f5f9; background-color: #f43f5e; border: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px #be123c; }
+        
+        /* 新增：畫面震動動畫 */
+        @keyframes screen-shake {
+            0% { transform: translate(1px, 1px); }
+            10% { transform: translate(-1px, -2px); }
+            20% { transform: translate(-3px, 0px); }
+            30% { transform: translate(3px, 2px); }
+            40% { transform: translate(1px, -1px); }
+            50% { transform: translate(-1px, 2px); }
+            60% { transform: translate(-3px, 1px); }
+            70% { transform: translate(3px, 1px); }
+            80% { transform: translate(-1px, -1px); }
+            90% { transform: translate(1px, 2px); }
+            100% { transform: translate(0, 0); }
+        }
+        .screen-shake-animation {
+            animation: screen-shake 0.4s;
+        }
     </style>
 </head>
 <body>
@@ -184,12 +186,14 @@
             <div id="gs-message" class="mt-6 h-10 text-xl text-slate-500"></div>
         </div>
 
-        <!-- ===== 遊戲二：打字衝刺 ===== -->
+        <!-- ===== 遊戲二：打字衝刺 (UI 已更新) ===== -->
         <div id="game-dash" class="hidden">
             <button class="back-button">返回選單</button>
             <div id="gd-ui-bar">
+                <span>關卡: <span id="gd-level-display">1</span></span>
+                <span>生命: <span id="gd-lives-display">5</span></span>
                 <span>分數: <span id="gd-score-display">0</span></span>
-                <span>生命: <span id="gd-lives-display"></span></span>
+                <span>下關還差: <span id="gd-countdown-display">10</span></span>
             </div>
             <div id="gd-game-area"></div>
             <div id="gd-game-over-screen" class="gd-overlay hidden">
@@ -201,6 +205,7 @@
 
     </div>
     <script src="script.js" defer></script>
-    
+
+
 </body>
 </html>
