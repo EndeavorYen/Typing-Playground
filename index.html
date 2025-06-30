@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing-Playground 打字遊樂場</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Noto+Sans+TC:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f0f9ff; /* bg-sky-50 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .game-wrapper {
+            width: 100%;
+            max-width: 600px;
+            height: 85vh;
+            max-height: 800px;
+            background-color: #ffffff; /* bg-white */
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* --- 主選單樣式 --- */
+        #main-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+            padding: 2rem;
+        }
+        #main-menu h1 {
+            font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+            font-size: 3.5rem;
+            color: #0c4a6e; /* sky-900 */
+            margin-bottom: 0.5rem;
+        }
+        #main-menu p {
+            font-size: 1.25rem;
+            color: #38bdf8; /* sky-400 */
+            margin-bottom: 3rem;
+        }
+        .menu-button {
+            padding: 1rem 2rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 80%;
+            margin-bottom: 1.5rem;
+        }
+        .menu-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        #btn-game-static {
+            background-color: #34d399; /* emerald-400 */
+            box-shadow: 0 4px #10b981; /* emerald-500 */
+        }
+        #btn-game-dash {
+            background-color: #f43f5e; /* rose-500 */
+            box-shadow: 0 4px #be123c; /* rose-700 */
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #475569; /* slate-600 */
+            background-color: #f1f5f9; /* slate-100 */
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 50;
+            transition: all 0.2s ease;
+        }
+        .back-button:hover {
+            background-color: #e2e8f0; /* slate-200 */
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* --- 靜態練習遊戲樣式 --- */
+        #game-static {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background-color: #f0f9ff;
+        }
+        #gs-char-display {
+            font-family: 'Fredoka One', cursive;
+            text-align: center;
+            font-size: 5rem;
+            /* 移除粗體 */
+            color: #334155; /* slate-700 */
+            min-height: 100px;
+            padding: 1rem;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            letter-spacing: 0.1em; /* tracking-widest */
+        }
+        #gs-char-display span { display: inline-block; transition: color 0.2s; }
+        .gs-correct { color: #10B981; }
+        @keyframes gs-shake-correct { 0%,100%{transform:translate(0,0)}10%{transform:translate(-5px,-8px)}20%{transform:translate(8px,5px)}30%{transform:translate(5px,-8px)}40%{transform:translate(-8px,-5px)}50%{transform:translate(-5px,8px)}60%{transform:translate(8px,5px)}70%{transform:translate(5px,8px)}80%{transform:translate(-8px,-5px)}90%{transform:translate(-5px,5px)} }
+        @keyframes gs-shake-incorrect { 0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)} }
+        .gs-shake-correct-animation { animation: gs-shake-correct 0.6s ease-in-out; }
+        .gs-shake-incorrect-animation { animation: gs-shake-incorrect 0.4s ease-in-out; }
+        
+        /* 新增：開始畫面的閃爍動畫 */
+        @keyframes pulse-ready {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(0.98); }
+        }
+        .pulse-animation {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-weight: 700;
+            font-size: 3rem;
+            color: #0c4a6e;
+            animation: pulse-ready 1.5s ease-in-out infinite;
+        }
+
+        /* --- 打字衝刺遊戲樣式 --- */
+        #game-dash {
+            height: 100%;
+            background-color: #0f172a; /* slate-900 */
+            display: flex;
+            flex-direction: column;
+        }
+        #gd-ui-bar { padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 700; color: #f1f5f9; background-color: rgba(15, 23, 42, 0.5); border-bottom: 2px solid #334155; z-index: 10; }
+        #gd-game-area { flex-grow: 1; position: relative; }
+        #gd-game-area .letter { position: absolute; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.8rem; color: #f1f5f9; background-color: #f43f5e; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.4); transition: transform 0.1s ease-out; }
+        #gd-game-area .popped { transform: scale(1.5); opacity: 0; transition: all 0.2s ease-out; }
+        .gd-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.8); backdrop-filter: blur(5px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 20; padding: 2rem; color: #f1f5f9; }
+        .gd-overlay h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; margin-bottom: 1rem; color: #f43f5e; }
+        .gd-overlay .button { padding: 0.8rem 1.8rem; font-size: 1rem; font-weight: 700; color: #f1f5f9; background-color: #f43f5e; border: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px #be123c; }
+    </style>
+</head>
+<body>
+
+    <div class="game-wrapper">
+
+        <!-- ===== 主選單畫面 ===== -->
+        <div id="main-menu">
+            <h1>Typing Playground</h1>
+            <p>選擇一個遊戲來挑戰吧！</p>
+            <button id="btn-game-static" class="menu-button">靜態練習</button>
+            <button id="btn-game-dash" class="menu-button">打字衝刺</button>
+        </div>
+
+        <!-- ===== 遊戲一：靜態練習 ===== -->
+        <div id="game-static" class="hidden">
+            <button class="back-button">返回選單</button>
+            <div class="text-2xl text-slate-600 mb-6 font-bold">請依序打出下面的單字</div>
+            <div id="gs-char-display">點擊或按任意鍵開始</div>
+            <div id="gs-message" class="mt-6 h-10 text-xl text-slate-500"></div>
+        </div>
+
+        <!-- ===== 遊戲二：打字衝刺 ===== -->
+        <div id="game-dash" class="hidden">
+            <button class="back-button">返回選單</button>
+            <div id="gd-ui-bar">
+                <span>分數: <span id="gd-score-display">0</span></span>
+                <span>生命: <span id="gd-lives-display"></span></span>
+            </div>
+            <div id="gd-game-area"></div>
+            <div id="gd-game-over-screen" class="gd-overlay hidden">
+                <h1>遊戲結束</h1>
+                <p>你的最終分數是: <span id="gd-final-score">0</span></p>
+                <button id="gd-restart-button" class="button">重新挑戰</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js" defer></script>
+    
+</body>
+</html>
