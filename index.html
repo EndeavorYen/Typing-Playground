@@ -36,110 +36,35 @@
         }
         
         /* --- 主選單樣式 --- */
-        #main-menu {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            height: 100%;
-            padding: 2rem;
-        }
-        #main-menu h1 {
-            font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-            font-size: 3.5rem;
-            color: #0c4a6e; /* sky-900 */
-            margin-bottom: 0.5rem;
-        }
-        #main-menu p {
-            font-size: 1.25rem;
-            color: #38bdf8; /* sky-400 */
-            margin-bottom: 3rem;
-        }
-        .menu-button {
-            padding: 1rem 2rem;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            width: 80%;
-            margin-bottom: 1.5rem;
-        }
-        .menu-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-        #btn-game-static {
-            background-color: #34d399; /* emerald-400 */
-            box-shadow: 0 4px #10b981; /* emerald-500 */
-        }
-        #btn-game-dash {
-            background-color: #f43f5e; /* rose-500 */
-            box-shadow: 0 4px #be123c; /* rose-700 */
-        }
+        #main-menu { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%; padding: 2rem; }
+        #main-menu h1 { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 3.5rem; color: #0c4a6e; margin-bottom: 0.5rem; }
+        #main-menu p { font-size: 1.25rem; color: #38bdf8; margin-bottom: 3rem; }
+        .menu-button { padding: 1rem 2rem; font-size: 1.25rem; font-weight: 700; color: white; border: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; width: 80%; margin-bottom: 1.5rem; }
+        .menu-button:hover { transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        #btn-game-static { background-color: #34d399; box-shadow: 0 4px #10b981; }
+        #btn-game-dash { background-color: #f43f5e; box-shadow: 0 4px #be123c; }
+        #btn-game-monster { background-color: #a78bfa; box-shadow: 0 4px #8b5cf6; } /* New Monster Game Button */
         
-        .back-button {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            font-weight: 700;
-            color: #475569; /* slate-600 */
-            background-color: #f1f5f9; /* slate-100 */
-            border-radius: 8px;
-            cursor: pointer;
-            z-index: 50;
-            transition: all 0.2s ease;
-        }
-        .back-button:hover {
-            background-color: #e2e8f0; /* slate-200 */
-        }
+        .back-button { position: absolute; top: 1rem; left: 1rem; padding: 0.5rem 1rem; font-size: 1rem; font-weight: 700; color: #475569; background-color: #f1f5f9; border-radius: 8px; cursor: pointer; z-index: 50; transition: all 0.2s ease; }
+        .back-button:hover { background-color: #e2e8f0; }
 
-        .hidden {
-            display: none !important;
-        }
+        .hidden { display: none !important; }
 
         /* --- 靜態練習遊戲樣式 --- */
-        #game-static {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            background-color: #f0f9ff;
-        }
-        #gs-char-display {
-            font-family: 'Fredoka One', cursive;
-            text-align: center;
-            font-size: 5rem;
-            color: #334155;
-            min-height: 100px;
-            padding: 1rem;
-            background: white;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 90%;
-            letter-spacing: 0.1em;
-        }
+        #game-static { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background-color: #f0f9ff; }
+        #gs-char-display { font-family: 'Fredoka One', cursive; text-align: center; font-size: 5rem; color: #334155; min-height: 100px; padding: 1rem; background: white; border-radius: 20px; display: flex; align-items: center; justify-content: center; width: 90%; letter-spacing: 0.1em; }
         #gs-char-display span { display: inline-block; transition: color 0.2s; }
         .gs-correct { color: #10B981; }
         @keyframes gs-shake-correct { 0%,100%{transform:translate(0,0)}10%{transform:translate(-5px,-8px)}20%{transform:translate(8px,5px)}30%{transform:translate(5px,-8px)}40%{transform:translate(-8px,-5px)}50%{transform:translate(-5px,8px)}60%{transform:translate(8px,5px)}70%{transform:translate(5px,8px)}80%{transform:translate(-8px,-5px)}90%{transform:translate(-5px,5px)} }
         @keyframes gs-shake-incorrect { 0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)} }
         .gs-shake-correct-animation { animation: gs-shake-correct 0.6s ease-in-out; }
         .gs-shake-incorrect-animation { animation: gs-shake-incorrect 0.4s ease-in-out; }
-        
         @keyframes pulse-ready { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(0.98); } }
         .pulse-animation { font-family: 'Noto Sans TC', sans-serif; font-weight: 700; font-size: 3rem; color: #0c4a6e; animation: pulse-ready 1.5s ease-in-out infinite; }
 
         /* --- 打字衝刺遊戲樣式 --- */
         #game-dash { height: 100%; background-color: #0f172a; display: flex; flex-direction: column; }
-        #gd-ui-bar { padding: 0.5rem 1rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; font-size: 1rem; font-weight: 700; color: #f1f5f9; background-color: rgba(15, 23, 42, 0.5); border-bottom: 2px solid #334155; z-index: 10; text-align: center; }
+        #gd-ui-bar { padding: 0.5rem 1rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; font-size: 0.8rem; md:font-size: 1rem; font-weight: 700; color: #f1f5f9; background-color: rgba(15, 23, 42, 0.5); border-bottom: 2px solid #334155; z-index: 10; text-align: center; }
         #gd-game-area { flex-grow: 1; position: relative; }
         #gd-game-area .letter { position: absolute; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.8rem; color: #f1f5f9; background-color: #f43f5e; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.4); transition: transform 0.1s ease-out; }
         #gd-game-area .popped { transform: scale(1.5); opacity: 0; transition: all 0.2s ease-out; }
@@ -147,23 +72,20 @@
         .gd-overlay h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; margin-bottom: 1rem; color: #f43f5e; }
         .gd-overlay .button { padding: 0.8rem 1.8rem; font-size: 1rem; font-weight: 700; color: #f1f5f9; background-color: #f43f5e; border: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px #be123c; }
         
-        /* 新增：畫面震動動畫 */
-        @keyframes screen-shake {
-            0% { transform: translate(1px, 1px); }
-            10% { transform: translate(-1px, -2px); }
-            20% { transform: translate(-3px, 0px); }
-            30% { transform: translate(3px, 2px); }
-            40% { transform: translate(1px, -1px); }
-            50% { transform: translate(-1px, 2px); }
-            60% { transform: translate(-3px, 1px); }
-            70% { transform: translate(3px, 1px); }
-            80% { transform: translate(-1px, -1px); }
-            90% { transform: translate(1px, 2px); }
-            100% { transform: translate(0, 0); }
-        }
-        .screen-shake-animation {
-            animation: screen-shake 0.4s;
-        }
+        /* --- 打怪物遊戲樣式 (已更新) --- */
+        #game-monster { height: 100%; background-color: #334155; display: flex; flex-direction: column; }
+        #gm-ui-bar { padding: 0.5rem 1rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; font-size: 1rem; font-weight: 700; color: #f1f5f9; background-color: rgba(30, 41, 59, 0.5); border-bottom: 2px solid #475569; z-index: 10; text-align: center; }
+        #gm-game-area { flex-grow: 1; position: relative; }
+        .monster, .boss-part { position: absolute; transition: width 0.3s ease-out, height 0.3s ease-out, opacity 0.3s ease-out; display: flex; align-items: center; justify-content: center; }
+        .monster-graphic { font-size: 5rem; line-height: 1; transition: font-size 0.3s ease-out; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
+        .monster-char { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Poppins', sans-serif; font-size: 2rem; color: white; font-weight: 700; -webkit-text-stroke: 1.5px #334155; }
+        .boss-part .monster-char { font-size: 1.5rem; }
+        .monster-hit { animation: monster-shake 0.3s ease-in-out; }
+        @keyframes monster-shake { 0%,100%{transform:translateX(0)}10%,50%{transform:translateX(-8px)}30%,70%{transform:translateX(8px)} }
+        .monster-explode { transform: scale(2.5) rotate(45deg) !important; opacity: 0 !important; }
+
+        @keyframes screen-shake { 0%{transform:translate(1px,1px) rotate(0deg)}10%{transform:translate(-1px,-2px) rotate(-1deg)}20%{transform:translate(-3px,0px) rotate(1deg)}30%{transform:translate(3px,2px) rotate(0deg)}40%{transform:translate(1px,-1px) rotate(1deg)}50%{transform:translate(-1px,2px) rotate(-1deg)}100%{transform:translate(0,0) rotate(0deg)} }
+        .screen-shake-animation { animation: screen-shake 0.4s; }
     </style>
 </head>
 <body>
@@ -176,6 +98,7 @@
             <p>選擇一個遊戲來挑戰吧！</p>
             <button id="btn-game-static" class="menu-button">靜態練習</button>
             <button id="btn-game-dash" class="menu-button">打字衝刺</button>
+            <button id="btn-game-monster" class="menu-button">打怪物</button>
         </div>
 
         <!-- ===== 遊戲一：靜態練習 ===== -->
@@ -186,7 +109,7 @@
             <div id="gs-message" class="mt-6 h-10 text-xl text-slate-500"></div>
         </div>
 
-        <!-- ===== 遊戲二：打字衝刺 (UI 已更新) ===== -->
+        <!-- ===== 遊戲二：打字衝刺 ===== -->
         <div id="game-dash" class="hidden">
             <button class="back-button">返回選單</button>
             <div id="gd-ui-bar">
@@ -203,9 +126,23 @@
             </div>
         </div>
 
+        <!-- ===== 遊戲三：打怪物 ===== -->
+        <div id="game-monster" class="hidden">
+            <button class="back-button">返回選單</button>
+            <div id="gm-ui-bar">
+                <span>關卡: <span id="gm-level-display">1</span></span>
+                <span>已擊敗: <span id="gm-defeated-display">0</span></span>
+            </div>
+            <div id="gm-game-area"></div>
+            <div id="gm-game-over-screen" class="gd-overlay hidden" style="background-color: rgba(51, 65, 85, 0.8);">
+                <h1>遊戲結束</h1>
+                <p>你存活到了第 <span id="gm-final-level">1</span> 關！</p>
+                <button id="gm-restart-button" class="button" style="background-color: #a78bfa; box-shadow: 0 4px #8b5cf6;">重新挑戰</button>
+            </div>
+        </div>
+
     </div>
     <script src="script.js" defer></script>
-
-
+    
 </body>
 </html>
