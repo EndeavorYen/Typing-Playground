@@ -35,7 +35,7 @@
             overflow: hidden;
         }
         
-        /* --- 主選單樣式 --- */
+        /* --- Main menu styles --- */
         #main-menu { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%; padding: 2rem; }
         #main-menu h1 { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 3.5rem; color: #0c4a6e; margin-bottom: 0.5rem; }
         #main-menu p { font-size: 1.25rem; color: #38bdf8; margin-bottom: 3rem; }
@@ -48,7 +48,7 @@
         .back-button { position: absolute; top: 1rem; left: 1rem; padding: 0.5rem 1rem; font-size: 1rem; font-weight: 700; color: #475569; background-color: #f1f5f9; border-radius: 8px; cursor: pointer; z-index: 50; transition: all 0.2s ease; }
         .back-button:hover { background-color: #e2e8f0; }
         
-        /* 新增：語音按鈕樣式 */
+        /* Mic button styles */
         .mic-button {
             position: absolute;
             top: 1rem;
@@ -69,7 +69,7 @@
 
         .hidden { display: none !important; }
 
-        /* --- 靜態練習遊戲樣式 --- */
+        /* --- Static practice styles --- */
         #game-static { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background-color: #f0f9ff; }
         #gs-char-display { font-family: 'Fredoka One', cursive; text-align: center; font-size: 5rem; color: #334155; min-height: 100px; padding: 1rem; background: white; border-radius: 20px; display: flex; align-items: center; justify-content: center; width: 90%; letter-spacing: 0.1em; }
         #gs-char-display span { display: inline-block; transition: color 0.2s; }
@@ -81,9 +81,9 @@
         @keyframes pulse-ready { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(0.98); } }
         .pulse-animation { font-family: 'Noto Sans TC', sans-serif; font-weight: 700; font-size: 3rem; color: #0c4a6e; animation: pulse-ready 1.5s ease-in-out infinite; }
 
-        /* --- 打字衝刺遊戲樣式 --- */
+        /* --- Typing dash styles --- */
         #game-dash { height: 100%; background-color: #0f172a; display: flex; flex-direction: column; }
-        #gd-ui-bar { padding: 0.5rem 1rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; font-size: 0.8rem; md:font-size: 1rem; font-weight: 700; color: #f1f5f9; background-color: rgba(15, 23, 42, 0.5); border-bottom: 2px solid #334155; z-index: 10; text-align: center; }
+        #gd-ui-bar { padding: 0.5rem 1rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; font-size: 0.8rem; font-weight: 700; color: #f1f5f9; background-color: rgba(15, 23, 42, 0.5); border-bottom: 2px solid #334155; z-index: 10; text-align: center; }
         #gd-game-area { flex-grow: 1; position: relative; }
         #gd-game-area .letter { position: absolute; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.8rem; color: #f1f5f9; background-color: #f43f5e; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.4); transition: transform 0.1s ease-out; }
         #gd-game-area .popped { transform: scale(1.5); opacity: 0; transition: all 0.2s ease-out; }
@@ -91,7 +91,7 @@
         .gd-overlay h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; margin-bottom: 1rem; color: #f43f5e; }
         .gd-overlay .button { padding: 0.8rem 1.8rem; font-size: 1rem; font-weight: 700; color: #f1f5f9; background-color: #f43f5e; border: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px #be123c; }
         
-        /* --- 打怪物遊戲樣式 --- */
+        /* --- Monster game styles --- */
         #game-monster { height: 100%; background-color: #334155; display: flex; flex-direction: column; }
         #gm-ui-bar { padding: 0.5rem 1rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; font-size: 1rem; font-weight: 700; color: #f1f5f9; background-color: rgba(30, 41, 59, 0.5); border-bottom: 2px solid #475569; z-index: 10; text-align: center; }
         #gm-game-area { flex-grow: 1; position: relative; }
@@ -109,6 +109,20 @@
 
         @keyframes screen-shake { 0%{transform:translate(1px,1px) rotate(0deg)}10%{transform:translate(-1px,-2px) rotate(-1deg)}20%{transform:translate(-3px,0px) rotate(1deg)}30%{transform:translate(3px,2px) rotate(0deg)}40%{transform:translate(1px,-1px) rotate(1deg)}50%{transform:translate(-1px,2px) rotate(-1deg)}100%{transform:translate(0,0) rotate(0deg)} }
         .screen-shake-animation { animation: screen-shake 0.4s; }
+        
+        /* Responsive font-size for #gd-ui-bar */
+        @media (min-width: 768px) {
+            #gd-ui-bar { font-size: 1rem; }
+        }
+
+        /* --- Vocabulary modal styles --- */
+        #vocab-modal { position: absolute; inset: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 60; }
+        #vocab-modal .panel { background: #ffffff; width: 92%; max-width: 680px; border-radius: 16px; padding: 1.25rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        #vocab-textarea { width: 100%; min-height: 240px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 0.75rem; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.95rem; resize: vertical; outline: none; }
+        #vocab-textarea:focus { border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25); }
+        #vocab-actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1rem; }
+        #open-vocab-btn { position: absolute; bottom: 1rem; right: 1rem; padding: 0.5rem 0.8rem; font-weight: 700; color: #0c4a6e; background: #e0f2fe; border-radius: 10px; cursor: pointer; transition: background 0.15s ease; }
+        #open-vocab-btn:hover { background: #bae6fd; }
     </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
             <button id="btn-game-static" class="menu-button">靜態練習</button>
             <button id="btn-game-dash" class="menu-button">打字衝刺</button>
             <button id="btn-game-monster" class="menu-button">打怪物</button>
+            <button id="open-vocab-btn" title="管理詞彙">管理詞彙</button>
         </div>
 
         <!-- ===== 遊戲一：靜態練習 ===== -->
@@ -166,11 +181,26 @@
                 <button id="gm-restart-button" class="button" style="background-color: #a78bfa; box-shadow: 0 4px #8b5cf6;">重新挑戰</button>
             </div>
         </div>
-
+        <!-- ===== 詞彙管理 Modal ===== -->
+        <div id="vocab-modal" class="hidden">
+            <div class="panel">
+                <div class="text-xl font-bold text-slate-700 mb-2">詞彙管理</div>
+                <p class="text-slate-500 mb-3">每行一個單字 (A-Z)。會自動轉為大寫並忽略非字母字元。</p>
+                <textarea id="vocab-textarea" placeholder="e.g.\nAPPLE\nSKY\nDREAM\n..."></textarea>
+                <div class="flex justify-between items-center mt-3">
+                    <div id="vocab-stats" class="text-slate-500 text-sm"></div>
+                    <div id="vocab-actions">
+                        <button id="vocab-reset" class="px-3 py-2 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold">重設</button>
+                        <button id="vocab-cancel" class="px-3 py-2 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold">取消</button>
+                        <button id="vocab-save" class="px-3 py-2 rounded-md bg-emerald-500 hover:bg-emerald-600 text-white font-bold">儲存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // --- 全域元素, 事件監聽, 畫面切換邏輯 ---
+        // --- Global elements & navigation logic ---
         const gameWrapper = document.querySelector('.game-wrapper');
         const mainMenu = document.getElementById('main-menu');
         const gameStaticContainer = document.getElementById('game-static');
@@ -185,7 +215,48 @@
         function showGame(gameName) { mainMenu.classList.add('hidden'); activeGameKey = gameName; const container = document.getElementById(`game-${gameName}`); container.classList.remove('hidden'); if (games[activeGameKey]) { games[activeGameKey].start(); } }
 
         // ===================================
-        // ===== 語音辨識核心 (gameVoice) =====
+        // ===== Vocabulary store (vocabulary) =====
+        // ===================================
+        const vocabulary = {
+            storageKey: 'tp_words',
+            // Default English words for static practice
+            defaultWords: ['APPLE', 'SKY', 'DREAM', 'CODE', 'HAPPY', 'SUN', 'MOON', 'WATER', 'CLOUD', 'MUSIC', 'SMILE', 'LIGHT', 'NIGHT', 'BRAVE', 'PEACE', 'WORLD', 'SPACE', 'GREEN', 'QUICK', 'ZEBRA'],
+            getWords() {
+                try {
+                    const raw = localStorage.getItem(this.storageKey);
+                    if (!raw) return this.defaultWords.slice();
+                    const arr = JSON.parse(raw);
+                    if (!Array.isArray(arr)) return this.defaultWords.slice();
+                    return arr.filter(w => typeof w === 'string' && w.length > 0);
+                } catch (e) {
+                    return this.defaultWords.slice();
+                }
+            },
+            setWords(wordsArray) {
+                const sanitized = this.sanitize(wordsArray);
+                localStorage.setItem(this.storageKey, JSON.stringify(sanitized));
+                return sanitized;
+            },
+            reset() {
+                localStorage.removeItem(this.storageKey);
+            },
+            sanitize(wordsArray) {
+                const seen = new Set();
+                const output = [];
+                for (const w of wordsArray) {
+                    if (typeof w !== 'string') continue;
+                    const upper = w.replace(/[^a-zA-Z]/g, '').toUpperCase();
+                    if (upper.length >= 2 && upper.length <= 16 && !seen.has(upper)) {
+                        seen.add(upper);
+                        output.push(upper);
+                    }
+                }
+                return output.slice(0, 500);
+            }
+        };
+
+        // ===================================
+        // ===== Speech recognition core (gameVoice) =====
         // ===================================
         const gameVoice = {
             recognition: null,
@@ -203,8 +274,8 @@
                 this.recognition.onresult = (event) => {
                     const last = event.results.length - 1;
                     const transcript = event.results[last][0].transcript.trim().toUpperCase();
-                    console.log('語音輸入:', transcript);
-                    // 嘗試從字典轉換，或直接取第一個字
+                    console.log('voice input:', transcript);
+                    // attempt char-map conversion or fallback to first char
                     const recognizedChar = this.charMap[transcript] || transcript.charAt(0);
                     if (recognizedChar) {
                         callback(recognizedChar);
@@ -248,16 +319,16 @@
         };
 
         // ===================================
-        // ===== 遊戲一：靜態練習 (gameStatic) =====
+        // ===== Game 1: Static practice (gameStatic) =====
         // ===================================
         const gameStatic = {
             micButton: document.getElementById('gs-mic-button'),
-            display: document.getElementById('gs-char-display'), message: document.getElementById('gs-message'), wordSet: ['APPLE', 'SKY', 'DREAM', 'CODE', 'HAPPY', 'SUN', 'MOON'], alphabet: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', currentWord: '', typedIndex: 0, isGameRunning: false, isAnimating: false,
+            display: document.getElementById('gs-char-display'), message: document.getElementById('gs-message'), alphabet: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', currentWord: '', typedIndex: 0, isGameRunning: false, isAnimating: false, keydownHandler: null,
             start() { this.isGameRunning = true; this.display.innerHTML = '<span class="pulse-animation">準備好了嗎？</span>'; this.message.textContent = '請按任意鍵開始'; document.addEventListener('keydown', this.handleInitialKey, { once: true }); this.micButton.onclick = () => gameVoice.toggle(this.micButton, (char) => this.handleInput(char)); this.micButton.classList.remove('listening'); this.micButton.innerHTML = '🎤'; if (!gameVoice.isSupported) this.micButton.style.display = 'none'; else this.micButton.style.display = 'block'; },
-            init() { this.getNextWord(); document.addEventListener('keydown', (e) => this.handleInput(e.key.toUpperCase())); },
-            end() { this.isGameRunning = false; gameVoice.stop(); document.removeEventListener('keydown', this.handleInitialKey); document.removeEventListener('keydown', (e) => this.handleInput(e.key.toUpperCase())); },
+            init() { this.getNextWord(); if (!this.keydownHandler) { this.keydownHandler = (e) => this.handleInput(e.key.toUpperCase()); document.addEventListener('keydown', this.keydownHandler); } },
+            end() { this.isGameRunning = false; gameVoice.stop(); document.removeEventListener('keydown', this.handleInitialKey); if (this.keydownHandler) { document.removeEventListener('keydown', this.keydownHandler); this.keydownHandler = null; } },
             handleInitialKey: (e) => { gameStatic.init(); },
-            getNextWord() { this.typedIndex = 0; let newWord; do { newWord = this.wordSet[Math.floor(Math.random() * this.wordSet.length)]; } while (newWord === this.currentWord); this.currentWord = newWord; this.display.innerHTML = ''; this.currentWord.split('').forEach(char => { const charSpan = document.createElement('span'); charSpan.textContent = char; this.display.appendChild(charSpan); }); this.message.textContent = '換你囉！'; },
+            getNextWord() { const words = vocabulary.getWords(); if (!words || words.length === 0) { this.currentWord = ''; this.display.innerHTML = '<span class="pulse-animation">目前沒有可用詞彙，請到「管理詞彙」新增。</span>'; this.message.textContent = ''; return; } this.typedIndex = 0; let newWord; do { newWord = words[Math.floor(Math.random() * words.length)]; } while (newWord === this.currentWord && words.length > 1); this.currentWord = newWord; this.display.innerHTML = ''; this.currentWord.split('')[0] && this.currentWord.split('').forEach(char => { const charSpan = document.createElement('span'); charSpan.textContent = char; this.display.appendChild(charSpan); }); this.message.textContent = '換你囉！'; },
             handleInput(inputChar) { if (!this.isGameRunning || this.isAnimating || !this.currentWord || inputChar.length !== 1) return; const expectedKey = this.currentWord[this.typedIndex]; if (inputChar === expectedKey) { const targetSpan = this.display.children[this.typedIndex]; this.isAnimating = true; targetSpan.classList.add('gs-correct', 'gs-shake-correct-animation'); this.typedIndex++; setTimeout(() => { targetSpan.classList.remove('gs-shake-correct-animation'); this.isAnimating = false; if (this.typedIndex === this.currentWord.length) { this.message.textContent = '太棒了！完成！'; setTimeout(() => this.getNextWord(), 1000); } }, 600); } else { const targetSpan = this.display.children[this.typedIndex]; this.isAnimating = true; targetSpan.classList.add('gs-shake-incorrect-animation'); this.message.textContent = '不對喔，是這個字母！'; setTimeout(() => { targetSpan.classList.remove('gs-shake-incorrect-animation'); this.isAnimating = false; }, 500); } }
         };
 
@@ -266,9 +337,9 @@
         // ===================================
         const gameDash = {
             micButton: document.getElementById('gd-mic-button'),
-            gameArea: document.getElementById('gd-game-area'), scoreDisplay: document.getElementById('gd-score-display'), livesDisplay: document.getElementById('gd-lives-display'), levelDisplay: document.getElementById('gd-level-display'), countdownDisplay: document.getElementById('gd-countdown-display'), gameOverScreen: document.getElementById('gd-game-over-screen'), restartButton: document.getElementById('gd-restart-button'), finalScoreDisplay: document.getElementById('gd-final-score'), ALPHABET: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', INITIAL_LIVES: 5, HITS_PER_LEVEL: 10, LEVELS: [ { speed: 0.8, spawn: 1800 }, { speed: 1.0, spawn: 1600 }, { speed: 1.2, spawn: 1400 }, { speed: 1.5, spawn: 1200 }, { speed: 1.8, spawn: 1000 }, { speed: 2.1, spawn: 900 }, { speed: 2.4, spawn: 800 }, { speed: 2.7, spawn: 700 }, { speed: 3.0, spawn: 600 }, { speed: 3.4, spawn: 500 }, ], score: 0, lives: 0, lettersOnScreen: [], gameLoopId: null, lastSpawnTime: 0, isGameRunning: false, currentLevel: 1, hitsInLevel: 0, fallSpeed: 1, spawnRate: 1500,
-            start() { this.isGameRunning = true; this.score = 0; this.lives = this.INITIAL_LIVES; this.currentLevel = 1; this.hitsInLevel = 0; this.lettersOnScreen.forEach(letter => letter.element.remove()); this.lettersOnScreen = []; this.updateLevelSettings(); this.updateUI(); this.gameOverScreen.classList.add('hidden'); document.addEventListener('keydown', (e) => this.handleInput(e.key.toUpperCase())); this.restartButton.onclick = () => this.start(); this.micButton.onclick = () => gameVoice.toggle(this.micButton, (char) => this.handleInput(char)); this.micButton.classList.remove('listening'); this.micButton.innerHTML = '🎤'; if (!gameVoice.isSupported) this.micButton.style.display = 'none'; else this.micButton.style.display = 'block'; this.gameLoop(0); },
-            end() { this.isGameRunning = false; gameVoice.stop(); if (this.gameLoopId) cancelAnimationFrame(this.gameLoopId); document.removeEventListener('keydown', (e) => this.handleInput(e.key.toUpperCase())); },
+            gameArea: document.getElementById('gd-game-area'), scoreDisplay: document.getElementById('gd-score-display'), livesDisplay: document.getElementById('gd-lives-display'), levelDisplay: document.getElementById('gd-level-display'), countdownDisplay: document.getElementById('gd-countdown-display'), gameOverScreen: document.getElementById('gd-game-over-screen'), restartButton: document.getElementById('gd-restart-button'), finalScoreDisplay: document.getElementById('gd-final-score'), ALPHABET: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', INITIAL_LIVES: 5, HITS_PER_LEVEL: 10, LEVELS: [ { speed: 0.8, spawn: 1800 }, { speed: 1.0, spawn: 1600 }, { speed: 1.2, spawn: 1400 }, { speed: 1.5, spawn: 1200 }, { speed: 1.8, spawn: 1000 }, { speed: 2.1, spawn: 900 }, { speed: 2.4, spawn: 800 }, { speed: 2.7, spawn: 700 }, { speed: 3.0, spawn: 600 }, { speed: 3.4, spawn: 500 }, ], score: 0, lives: 0, lettersOnScreen: [], gameLoopId: null, lastSpawnTime: 0, isGameRunning: false, currentLevel: 1, hitsInLevel: 0, fallSpeed: 1, spawnRate: 1500, keydownHandler: null,
+            start() { this.isGameRunning = true; this.score = 0; this.lives = this.INITIAL_LIVES; this.currentLevel = 1; this.hitsInLevel = 0; this.lettersOnScreen.forEach(letter => letter.element.remove()); this.lettersOnScreen = []; this.updateLevelSettings(); this.updateUI(); this.gameOverScreen.classList.add('hidden'); if (!this.keydownHandler) { this.keydownHandler = (e) => this.handleInput(e.key.toUpperCase()); document.addEventListener('keydown', this.keydownHandler); } this.restartButton.onclick = () => this.start(); this.micButton.onclick = () => gameVoice.toggle(this.micButton, (char) => this.handleInput(char)); this.micButton.classList.remove('listening'); this.micButton.innerHTML = '🎤'; if (!gameVoice.isSupported) this.micButton.style.display = 'none'; else this.micButton.style.display = 'block'; this.gameLoop(0); },
+            end() { this.isGameRunning = false; gameVoice.stop(); if (this.gameLoopId) cancelAnimationFrame(this.gameLoopId); if (this.keydownHandler) { document.removeEventListener('keydown', this.keydownHandler); this.keydownHandler = null; } },
             updateLevelSettings() { const levelConfig = this.LEVELS[this.currentLevel - 1]; this.fallSpeed = levelConfig.speed; this.spawnRate = levelConfig.spawn; },
             updateUI() { this.scoreDisplay.textContent = this.score; this.livesDisplay.textContent = '❤️'.repeat(this.lives); this.levelDisplay.textContent = this.currentLevel; this.countdownDisplay.textContent = this.HITS_PER_LEVEL - this.hitsInLevel; },
             levelUp() { if (this.currentLevel < this.LEVELS.length) { this.currentLevel++; } this.hitsInLevel = 0; this.updateLevelSettings(); },
@@ -285,7 +356,7 @@
         const gameMonster = {
             micButton: document.getElementById('gm-mic-button'),
             gameArea: document.getElementById('gm-game-area'), levelDisplay: document.getElementById('gm-level-display'), defeatedDisplay: document.getElementById('gm-defeated-display'), gameOverScreen: document.getElementById('gm-game-over-screen'), restartButton: document.getElementById('gm-restart-button'), finalLevelDisplay: document.getElementById('gm-final-level'), 
-            ALPHABET: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''), MONSTERS_PER_BOSS: 10, SPAWN_EDGE_BUFFER: 80,
+            ALPHABET: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''), MONSTERS_PER_BOSS: 10, SPAWN_EDGE_BUFFER: 80, keydownHandler: null,
             LEVELS: [ { count: 1, interval: 3000, growth: 0.05 }, { count: 2, interval: 2800, growth: 0.06 }, { count: 2, interval: 2500, growth: 0.07 }, { count: 3, interval: 2300, growth: 0.08 }, { count: 3, interval: 2000, growth: 0.10 }, { count: 4, interval: 1800, growth: 0.12 }, { count: 4, interval: 1600, growth: 0.14 }, { count: 5, interval: 1500, growth: 0.16 }, { count: 5, interval: 1400, growth: 0.18 }, { count: 6, interval: 1300, growth: 0.20 }, ],
             DESIGNS: {
                 ghost:   { emoji: '👻', size: 60 }, pumpkin: { emoji: '🎃', size: 60 }, lion:    { emoji: '🦁', size: 60 },
@@ -306,7 +377,7 @@
                     parts: [
                         { id: 'head', emoji: '🤖', size: 100, position: { top: '0px', left: '100px' }, isMain: true },
                         { id: 'l_arm', emoji: '🦾', size: 120, position: { top: '80px', left: '-20px' }, growthFactor: 1.2, isWeakPoint: true },
-                        { id: 'r_arm', emoji: '�', size: 120, position: { top: '80px', left: '200px' }, growthFactor: 1.2 },
+                        { id: 'r_arm', emoji: '🦾', size: 120, position: { top: '80px', left: '200px' }, growthFactor: 1.2 },
                         { id: 'l_leg', emoji: '🦿', size: 100, position: { top: '180px', left: '60px' } },
                         { id: 'r_leg', emoji: '🦿', size: 100, position: { top: '180px', left: '140px' } }
                     ]
@@ -323,8 +394,8 @@
                 }
             ],
             isGameRunning: false, gameLoopId: null, lastSpawnTime: 0, currentLevel: 1, monstersDefeated: 0, monstersOnScreen: [], activeChars: [], isBossActive: false,
-            start() { this.isGameRunning = true; this.currentLevel = 1; this.monstersDefeated = 0; this.isBossActive = false; this.gameArea.innerHTML = ''; this.monstersOnScreen = []; this.activeChars = []; this.updateUI(); this.gameOverScreen.classList.add('hidden'); document.addEventListener('keydown', (e) => this.handleInput(e.key.toUpperCase())); this.restartButton.onclick = () => this.start(); this.micButton.onclick = () => gameVoice.toggle(this.micButton, (char) => this.handleInput(char)); this.micButton.classList.remove('listening'); this.micButton.innerHTML = '🎤'; if (!gameVoice.isSupported) this.micButton.style.display = 'none'; else this.micButton.style.display = 'block'; this.gameLoop(0); },
-            end() { this.isGameRunning = false; gameVoice.stop(); if (this.gameLoopId) cancelAnimationFrame(this.gameLoopId); document.removeEventListener('keydown', (e) => this.handleInput(e.key.toUpperCase())); },
+            start() { this.isGameRunning = true; this.currentLevel = 1; this.monstersDefeated = 0; this.isBossActive = false; this.gameArea.innerHTML = ''; this.monstersOnScreen = []; this.activeChars = []; this.updateUI(); this.gameOverScreen.classList.add('hidden'); if (!this.keydownHandler) { this.keydownHandler = (e) => this.handleInput(e.key.toUpperCase()); document.addEventListener('keydown', this.keydownHandler); } this.restartButton.onclick = () => this.start(); this.micButton.onclick = () => gameVoice.toggle(this.micButton, (char) => this.handleInput(char)); this.micButton.classList.remove('listening'); this.micButton.innerHTML = '🎤'; if (!gameVoice.isSupported) this.micButton.style.display = 'none'; else this.micButton.style.display = 'block'; this.gameLoop(0); },
+            end() { this.isGameRunning = false; gameVoice.stop(); if (this.gameLoopId) cancelAnimationFrame(this.gameLoopId); if (this.keydownHandler) { document.removeEventListener('keydown', this.keydownHandler); this.keydownHandler = null; } },
             updateUI() { this.levelDisplay.textContent = this.currentLevel; this.defeatedDisplay.textContent = this.monstersDefeated; },
             gameLoop(timestamp) {
                 if (!this.isGameRunning) return;
@@ -469,7 +540,7 @@
                         setTimeout(() => monster.el.remove(), 300);
                     }, 300);
                     this.monstersOnScreen.splice(monsterIndex, 1);
-                    this.activeChars.splice(this.activeChars.indexOf(char), 1);
+                    this.activeChars.splice(this.activeChars.indexOf(monster.char), 1);
                     this.monstersDefeated++;
                     this.updateUI();
                     if (this.monstersDefeated > 0 && this.monstersDefeated % this.MONSTERS_PER_BOSS === 0) {
@@ -485,8 +556,51 @@
             dash: gameDash,
             monster: gameMonster
         };
+
+        // ===================================
+        // ===== Vocabulary modal wiring =====
+        // ===================================
+        const vocabModal = document.getElementById('vocab-modal');
+        const openVocabBtn = document.getElementById('open-vocab-btn');
+        const vocabTextarea = document.getElementById('vocab-textarea');
+        const vocabStats = document.getElementById('vocab-stats');
+        const vocabSave = document.getElementById('vocab-save');
+        const vocabCancel = document.getElementById('vocab-cancel');
+        const vocabReset = document.getElementById('vocab-reset');
+
+        function openVocabModal() {
+            const words = vocabulary.getWords();
+            vocabTextarea.value = words.join('\n');
+            updateVocabStats(words);
+            vocabModal.classList.remove('hidden');
+        }
+
+        function closeVocabModal() {
+            vocabModal.classList.add('hidden');
+        }
+
+        function updateVocabStats(wordsArr) {
+            vocabStats.textContent = `目前詞彙數：${wordsArr.length}`;
+        }
+
+        openVocabBtn.addEventListener('click', openVocabModal);
+        vocabCancel.addEventListener('click', closeVocabModal);
+        vocabReset.addEventListener('click', () => {
+            vocabulary.reset();
+            const words = vocabulary.getWords();
+            vocabTextarea.value = words.join('\n');
+            updateVocabStats(words);
+        });
+        vocabSave.addEventListener('click', () => {
+            const lines = vocabTextarea.value.split(/\r?\n/);
+            const saved = vocabulary.setWords(lines);
+            updateVocabStats(saved);
+            closeVocabModal();
+            if (activeGameKey === 'static' && gameStatic.isGameRunning) {
+                // Refresh next word pool without disrupting current animation
+                setTimeout(() => gameStatic.getNextWord(), 200);
+            }
+        });
     </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="zh-TW">
